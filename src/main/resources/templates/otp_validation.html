@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>OTP Validation</title>
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+	<div class="container">
+		
+		 <div class="col-md-4">
+			 <form class="form-signin" action="#" th:action="@{/otpValidation}" th:object="${otpInput}" method="post">		    
+			    <div class="form-group">
+	                <label>OTP</label>
+	                <input type="text" id="otp" th:field="*{otp}"  class="form-control" placeholder="otp">
+           		</div>
+			</form>
+		 </div>
+	</div>	
+
+</body>
+</html>
