@@ -1,21 +1,21 @@
 package com.bilisimio.configuration;
 
-import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
-@Configuration
-@ConfigurationProperties("twilio")
+@Component
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
+@Configuration
 public class TwilioConfiguration {
-	
+
+	@Value("${twilio.accountSid}")
 	private String accountSid;
+	@Value("${twilio.authToken}")
 	private String authToken;
+	@Value("${twilio.trialNumber}")
 	private String trialNumber;
-	
+
 }
