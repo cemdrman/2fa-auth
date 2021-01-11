@@ -13,8 +13,13 @@
 			 <form class="form-signin" action="#" th:action="@{/otpValidation}" th:object="${otpInput}" method="post">		    
 			    <div class="form-group">
 	                <label>OTP</label>
-	                <input type="text" id="otp" th:field="*{otp}"  class="form-control" placeholder="otp">
-           		</div>
+	                <input type="text" id="otpCode" th:field="*{otpCode}"  class="form-control" placeholder="otp">
+	                <input type="hidden" th:value="${hashedOtpCode}" th:attr="name='hashedOtpCode'" />
+	                 <div>
+	                <p></p>
+		            </div>
+		            	<button type="submit" class="btn btn-primary">Validate</button>
+	           		</div>
 			</form>
 		 </div>
 	</div>	
