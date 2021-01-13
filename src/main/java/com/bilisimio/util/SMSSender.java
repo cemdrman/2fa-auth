@@ -1,9 +1,7 @@
 package com.bilisimio.util;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.bilisimio.configuration.TwilioConfiguration;
 import com.bilisimio.output.OTPOutput;
 import com.twilio.Twilio;
 import com.twilio.rest.api.v2010.account.Message;
@@ -17,8 +15,11 @@ public class SMSSender {
 
 	private static SMSSender instance = null;
 
-	@Autowired
-	private TwilioConfiguration configuration;
+	private String accountSid = "AC377e68f4e5565436217b27584331b79f";
+
+	private String authToken = "3bface45de08108d646009ccabafdbdb";
+
+	private String trialNumber = "+18702592950";
 
 	private SMSSender() {
 
@@ -32,16 +33,16 @@ public class SMSSender {
 	}
 
 	public String sendOTP(OTPOutput otpOutput) {
-		Twilio.init(configuration.getAccountSid(), configuration.getAuthToken());
+		Twilio.init(accountSid, authToken);
 
 		Message message = Message.creator(new PhoneNumber("+905394176264"), // to
-				new PhoneNumber(configuration.getTrialNumber()), // from
+				new PhoneNumber(trialNumber), // from
 				prepareOTPMessage(otpOutput.getCode())).create();
 
 		log.info(message.getSid());
 		return message.getSid();
 	}
-	
+
 	private String prepareOTPMessage(String code) {
 		return "Your verification code is: ".concat(code);
 	}
